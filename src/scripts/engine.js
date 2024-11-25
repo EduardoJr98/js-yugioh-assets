@@ -95,7 +95,7 @@ async function createCardImage(randomIdCard, fieldSide) {
   return cardImage;
 }
 async function RemoveAllCardImages() {
-  let cards = document.querySelector(".card-box.framed#enemy-cards");
+  let cards = document.querySelector(".card-box.framed#computer-cards");
   let imgElements = cards.querySelectorAll("img");
   imgElements.forEach((img) => img.remove());
   cards = document.querySelector(".card-box.framed#player-cards");
