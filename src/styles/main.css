@@ -109,11 +109,6 @@
   border: 1px solid white;
   border-radius: 8px;
 }
-
-.card-infield > img {
-  border: none;
-}
-
 .card-details {
   border: 3px solid black;
   background-color: #f0f8ff;
