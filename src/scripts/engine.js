@@ -134,6 +134,8 @@ async function updateScore() {
   state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
 }
 function init() {
+  state.fieldCards.player.style.display = "none";
+  state.fieldCards.computer.style.display = "none";
   drawCards(5, player.player1);
   drawCards(5, player.computer);
   const bgm = document.getElementById("bgm");
