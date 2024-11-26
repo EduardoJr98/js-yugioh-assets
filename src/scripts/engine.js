@@ -145,7 +145,9 @@ function init() {
   state.fieldCards.computer.style.display = "none";
   drawCards(5, player.player1);
   drawCards(5, player.computer);
+ document.addEventListener("click", () => {
   const bgm = document.getElementById("bgm");
   bgm.play();
+}, { once: true });
 }
 init();
