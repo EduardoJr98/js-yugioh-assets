@@ -54,6 +54,7 @@ async function setCardsField(cardId) {
   let computerCardId = await getRandomCardId();
   state.fieldCards.player.style.display = "block";
   state.fieldCards.computer.style.display = "block";
+  await hiddenCardDetails();
   state.fieldCards.player.src = cardData[cardId].img;
   state.fieldCards.computer.src = cardData[computerCardId].img;
   let duelResults = await checkDuelResults(cardId, computerCardId);
@@ -114,6 +115,13 @@ function drawSelectCard(index) {
   state.cardSprite.name.innerText = cardData[index].name;
   state.cardSprite.type.innerText = "Attribute: " + cardData[index].type;
 }
+
+async function hiddenCardDetails(){
+  state.cardSprites.avatar.src = "";
+  state.cardSprites.name.innerText = "";
+  state.cardSprites.type.innerText = "";
+}
+
 async function drawButton(text) {
   state.button.innerText = text;
   state.button.style.display = "block";
