@@ -44,6 +44,42 @@ const cardData = [
     attack: 3000,
     img: "./src/assets/icons/lucifer.png",
   },
+  {
+    id: 4,
+    name: "Dark Magician",
+    attack: 2500,
+    img: "./src/assets/icons/magician.png",
+  },
+  {
+    id: 5,
+    name: "Erebus",
+    attack: 2800,
+    img: "./src/assets/icons/erebus.png",
+  },
+  {
+    id: 6,
+    name: "Irou",
+    attack: 1700,
+    img: "./src/assets/icons/irou.png",
+  },
+  {
+    id: 7,
+    name: "Red Eyes Black Dragon",
+    attack: 2400,
+    img: "./src/assets/icons/red.png",
+  },
+  {
+    id: 8,
+    name: "Neos",
+    attack: 2500,
+    img: "./src/assets/icons/neos.png",
+  },
+  {
+    id: 9,
+    name: "Stardust Dragon",
+    attack: 2500,
+    img: "./src/assets/icons/star.png",
+  },
 ];
 async function getRandomCardId() {
   const randomIndex = Math.floor(Math.random() * cardData.length);
