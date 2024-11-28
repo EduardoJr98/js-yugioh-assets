@@ -81,6 +81,9 @@ const cardData = [
     img: "./src/assets/icons/star.png",
   },
 ];
+
+let usedCards [];
+
 async function getRandomCardId() {
   const randomIndex = Math.floor(Math.random() * cardData.length);
   return cardData[randomIndex].id;
@@ -130,16 +133,17 @@ async function createCardImage(randomIdCard, fieldSide) {
   return cardImage;
 }
 async function RemoveAllCardImages() {
-  let cards = document.querySelector(".card-box.framed#computer-cards");
-  let imgElements = cards.querySelectorAll("img");
-  imgElements.forEach((img) => img.remove());
-  cards = document.querySelector(".card-box.framed#player-cards");
-  imgElements = cards.querySelectorAll("img");
-  imgElements.forEach((img) => img.remove());
+  ["computer-cards", "player-cards"].forEach(fieldId => {
+    const cardsContainer = document.getElementById(fieldId);
+    while (cardsContainer.firstChild) {
+      cardsContainer.removeChild(cardsContainer.firstChild);
+    }
+  });
 }
 async function drawCards(cardNumbers, fieldSide) {
   for (let i = 0; i < cardNumbers; i++) {
     const randomIdCard = await getRandomCardId();
+    usedCards.push(randomIdCard);
     const cardImage = await createCardImage(randomIdCard, fieldSide);
     document.getElementById(fieldSide).appendChild(cardImage);
   }
@@ -161,12 +165,14 @@ async function drawButton(text) {
   state.button.style.display = "block";
 }
 async function resetDuel() {
+  usedCards = [];
   state.cardSprite.avatar.src = "";
   state.button.style.display = "none";
   state.fieldCards.player.style.display = "none";
   state.fieldCards.computer.style.display = "none";
-  drawCards(5, player.player1);
-  drawCards(5, player.computer);
+  RemoveAllCardImages();
+  await drawCards(5, player.player1);
+  await drawCards(5, player.computer);
 }
 async function playAudio(status) {
   const audio = new Audio(`./src/assets/audios/${status}.wav`);
@@ -176,13 +182,13 @@ async function updateScore() {
   state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
 }
 function init() {
+  usedCards = []; // Garanta que o rastreador inicie vazio
   state.fieldCards.player.style.display = "none";
   state.fieldCards.computer.style.display = "none";
   drawCards(5, player.player1);
   drawCards(5, player.computer);
- document.addEventListener("click", () => {
+
   const bgm = document.getElementById("bgm");
-  bgm.play();
-}, { once: true });
+  if (bgm) bgm.play(); // Toque a música de fundo apenas se ela existir
 }
 init();
