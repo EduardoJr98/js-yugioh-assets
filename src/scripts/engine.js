@@ -81,9 +81,16 @@ const cardData = [
     img: "./src/assets/icons/star.png",
   },
 ];
+
+let usedCards [];
+
 async function getRandomCardId() {
-  const randomIndex = Math.floor(Math.random() * cardData.length);
-  return cardData[randomIndex].id;
+  const availableCards = cardData.filter(card => !usedCards.includes(card.id));
+  if (availableCards.length === 0) {
+    throw new Error("Todas as cartas já foram distribuídas.");
+  }
+  const randomIndex = Math.floor(Math.random() * availableCards.length);
+  return availableCards[randomIndex].id;
 }
 async function setCardsField(cardId) {
   await RemoveAllCardImages();
@@ -140,6 +147,7 @@ async function RemoveAllCardImages() {
 async function drawCards(cardNumbers, fieldSide) {
   for (let i = 0; i < cardNumbers; i++) {
     const randomIdCard = await getRandomCardId();
+    usedCards.push(randomIdCard);
     const cardImage = await createCardImage(randomIdCard, fieldSide);
     document.getElementById(fieldSide).appendChild(cardImage);
   }
@@ -161,6 +169,7 @@ async function drawButton(text) {
   state.button.style.display = "block";
 }
 async function resetDuel() {
+  usedCards = [];
   state.cardSprite.avatar.src = "";
   state.button.style.display = "none";
   state.fieldCards.player.style.display = "none";
