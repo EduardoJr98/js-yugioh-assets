@@ -46,9 +46,9 @@ const cardData = [
   },
   {
     id: 4,
-    name: "Dark Magician",
-    attack: 2500,
-    img: "./src/assets/icons/magician.png",
+    name: "Michael",
+    attack: 2600,
+    img: "./src/assets/icons/michael.png",
   },
   {
     id: 5,
