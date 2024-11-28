@@ -42,7 +42,7 @@ const cardData = [
     id: 3,
     name: "Lucifer",
     attack: 3000,
-    img: "./src/assets/icons/Lucifer.png",
+    img: "./src/assets/icons/lucifer.png",
   },
 ];
 async function getRandomCardId() {
