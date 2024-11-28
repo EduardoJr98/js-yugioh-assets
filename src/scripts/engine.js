@@ -23,26 +23,20 @@ const cardData = [
   {
     id: 0,
     name: "Blue Eyes White Dragon",
-    type: "Paper",
+    attack: 3000,
     img: "./src/assets/icons/dragon.png",
-    WinOf: [1],
-    LoseOf: [2],
   },
   {
     id: 1,
     name: "Dark Magician",
-    type: "Rock",
+    attack: 2500,
     img: "./src/assets/icons/magician.png",
-    WinOf: [2],
-    LoseOf: [0],
   },
   {
     id: 2,
     name: "Exodia",
-    type: "Scissors",
+    attack: 9999999,
     img: "./src/assets/icons/exodia.png",
-    WinOf: [0],
-    LoseOf: [1],
   },
 ];
 async function getRandomCardId() {
@@ -63,15 +57,14 @@ async function setCardsField(cardId) {
 }
 async function checkDuelResults(playerCardId, computerCardId) {
   let playerCard = cardData[playerCardId];
+  let computerCard = cardData[computerCardId];
   let duelResults = "Empate";
-  // check if win
-  if (playerCard.WinOf.includes(computerCardId)) {
+
+  if (playerCard.attack > computerCard.attack) {
     duelResults = "Ganhou";
     await playAudio("win");
     state.score.playerScore++;
-  }
-  // check if loses
-  if (playerCard.LoseOf.includes(computerCardId)) {
+  } else if (playerCard.attack < computerCard.attack) {
     duelResults = "Perdeu";
     await playAudio("lose");
     state.score.computerScore++;
@@ -112,7 +105,7 @@ async function drawCards(cardNumbers, fieldSide) {
 function drawSelectCard(index) {
   state.cardSprite.avatar.src = cardData[index].img;
   state.cardSprite.name.innerText = cardData[index].name;
-  state.cardSprite.type.innerText = "Attribute: " + cardData[index].type;
+  state.cardSprite.type.innerText = `Attack: ${cardData[index].attack}`;
 }
 
 async function hiddenCardDetails() {
