@@ -38,6 +38,12 @@ const cardData = [
     attack: 9999999,
     img: "./src/assets/icons/exodia.png",
   },
+  {
+    id: 3,
+    name: "Lucifer",
+    attack: 2500,
+    img: "./src/assets/icons/Luciferr.png",
+  },
 ];
 async function getRandomCardId() {
   const randomIndex = Math.floor(Math.random() * cardData.length);
