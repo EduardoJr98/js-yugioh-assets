@@ -35,7 +35,7 @@ const cardData = [
   {
     id: 2,
     name: "Exodia",
-    attack: 9999999,
+    attack: 999999,
     img: "./src/assets/icons/exodia.png",
   },
   {
